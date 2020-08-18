@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="container background-pug">
+        <h1>Welcome to my ted talk! this is Iteration number: @ViewBag.arandomnumber </h1>
+        <a href="/otherpage"> Click to go to another page! </a>
+        <ul>
+            @foreach(string thing in @ViewBag.whatevername){
+               <li> @thing </li> 
+            }
+        </ul>
+        @if(@ViewBag.isPuglishes){
+        <h1>Puglishes</h1>
+        }
+    </div>
+</body>
+</html>

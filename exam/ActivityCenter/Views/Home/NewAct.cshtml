@@ -1,0 +1,54 @@
+@{
+    ViewData["Title"] = "New Activity";
+}
+
+@model DashboardViewModel
+
+<div class="jumbotron">
+    <div class="container col-sm-6">
+        <h1>Dojo Activity Center</h1>
+    </div>
+    <div class="container col-sm-6 text-right">
+        <a href="/dashboard">Home&nbsp;&nbsp;</a> <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="container">
+    <form asp-action="CreateAct" asp-controller="Home" method="post">
+        <div class="form-group row">
+            <span class="col-sm-12 text-danger" asp-validation-for="ActForm.Name"></span>
+            <br>
+            <label asp-for="ActForm.Name" class="col-sm-4">Title: </label>
+            <input type="text" asp-for="ActForm.Name" class="col-sm-8">
+            <span class="col-sm-12 text-danger" asp-validation-for="ActForm.Time"></span>
+            <br>
+            <label asp-for="ActForm.Time" class="col-sm-4">Time: </label>
+            <input type="time" asp-for="ActForm.Time" class="col-sm-8">
+        </div>
+        <div class="form-group row">
+            <span class="col-sm-12 text-danger" asp-validation-for="ActForm.Date"></span>
+            <br>
+            <label asp-for="ActForm.Date" class="col-sm-4">Date: </label>
+            <input type="date" asp-for="ActForm.Date" class="col-sm-8">
+            <span class="col-sm-6 text-danger" asp-validation-for="ActForm.Duration"></span>
+            <br>
+            <label asp-for="ActForm.Duration" class="col-sm-4">Duration: </label>
+            <input type="text" asp-for="ActForm.Duration" class="col-sm-6">
+            <span class="col-sm-4 text-danger" asp-validation-for="ActForm.TimeType"></span>
+            <br>
+            <select asp-for="ActForm.TimeType" class="col-sm-2">
+                <option value="Hours" selected>Hours</option>
+                <option value="Minutes">Minutes</option>
+                <option value="Days">Days</option>
+            </select>
+        </div>
+        <div class="form-group row">
+            <span class="col-sm-12 text-danger" asp-validation-for="ActForm.Description"></span>
+            <br>
+            <label class="col-sm-4" asp-for="ActForm.Description">Description: </label>
+            <textarea asp-for="ActForm.Description" cols="50" rows="5"></textarea>
+        </div>
+        <div class="form-group row">
+            <input type="submit" value="Create an Activity" class="btn btn-primary">
+        </div>
+    </form>
+</div>

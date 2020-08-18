@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>You've been here: @ViewBag.MyCounter times!</h1>
+<h3>@ViewBag.MyMantra</h3>
+<form asp-action="NewMantra" asp-controller="Home" method="post">
+    <input type="text" name="mantra">
+    <input type="submit" value="Submit">
+</form>
+<button><a href="clearsession">Clear Session</a></button>

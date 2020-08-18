@@ -1,0 +1,49 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<h1>Hello Students</h1>
+
+@model IndexViewModel;
+
+<div class="container">
+    <form asp-action="MakeThing" asp-controller="Home" method="post">
+        <div class="row">
+            <span class="col-sm-12" asp-validation-for="UserForm.Name"></span>
+            <label class="col-sm-4" asp-for="UserForm.Name"></label>
+            <input class="col-sm-8" type="text" asp-for="UserForm.Name">
+        </div>
+        <div class="row">
+            <span class="col-sm-12" asp-validation-for="UserForm.Email"></span>
+            <label class="col-sm-4" asp-for="UserForm.Email"></label>
+            <input class="col-sm-8" type="text" asp-for="UserForm.Email">
+        </div>
+        <div class="row">
+            <span class="col-sm-12" asp-validation-for="UserForm.Password"></span>
+            <label class="col-sm-4" asp-for="UserForm.Password"></label>
+            <input class="col-sm-8" type="password" asp-for="UserForm.Password">
+        </div>
+        <div class="row">
+            <input class="col-sm-4" type="submit" value="Submit">
+        </div>
+    </form>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Password</th>
+            </thead>
+            <tbody>
+                @foreach(User user in Model.RegisteredUsers)
+                {
+                <tr>
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Password</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,57 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model DashboardViewModel
+
+<div class="jumbotron">
+    <div class="container col-sm-6">
+        <h1>Dojo Activity Center</h1>
+    </div>
+    <div class="container col-sm-6 text-right">
+        <p>Welcome, @Model.LoggedUser.Name!   </p> <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row">
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Date and Time</th>
+                <th>Duration</th>
+                <th>Event Coordinator</th>
+                <th>No. of Praticipants</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                @foreach(Act act in Model.Act)
+                {
+                    <tr>
+                        <td><a href="/act/@act.ActId">@act.Name</a></td>
+                        <td>@act.Date @act.Time</td>
+                        <td>@act.Duration @act.TimeType</td>
+                        <td>@act.User.Name</td>
+                        <td>@act.UsersAttending.Count</td>
+                        <td>
+                            @if(!act.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId)  && act.UserId != Model.LoggedUser.UserId)
+                            {
+                                <a href="/join/@act.ActId">Join</a>
+                            }
+                            else if(act.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId) && act.UserId != Model.LoggedUser.UserId)
+                            {
+                                <a href="/cancel/@act.ActId">Cancel</a>
+                            }
+                            else
+                            {
+                                <a href="/delete/@act.ActId">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="container text-left col-sm-12">
+        <button class="btn btn-outline-primary"><a href="/create">Create New Activity!</a></button>
+    </div>
+</div>

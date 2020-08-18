@@ -1,0 +1,16 @@
+@model Wedding
+<a href="/dashboard">Dashboard</a><br>
+<a href="logout">Log Out!</a>
+<h2>@Model.WedderOne & @Model.WedderTwo Wedding</h2>
+<h3>@Model.DateOfWedding.ToString("dd/MM/yyyy")</h3>
+@foreach(var g in Model.RSVPs){
+    <p> - @g.Guest.FirstName</p>
+}
+<p>Address: @Model.WeddingAddress</p>
+<iframe
+  width="600"
+  height="450"
+  frameborder="0" style="border:0"
+  src="https://www.google.com/maps/embed/v1/place?key=YourKEY
+    &q=@Model.WeddingAddress" allowfullscreen>
+</iframe>

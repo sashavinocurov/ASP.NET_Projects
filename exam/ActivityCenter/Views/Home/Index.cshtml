@@ -1,0 +1,67 @@
+﻿@{
+    ViewData["Title"] = "Login and Registration";
+}
+@model LogRegViewModel
+
+<div class="jumbotron">
+    <h1>Welcome to the Dojo Activity Center</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="card col-sm-6 text-left">
+            <h6>Register</h6>
+            <div class="row">
+                <form asp-action="Register" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.Name" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="RegUser.Name" class="col-sm-4">Name:</label>
+                        <input type="text" asp-for="RegUser.Name" class="col-sm-8" placeholder="Your Name">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.Email" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="RegUser.Email" class="col-sm-4">Email:</label>
+                        <input type="email" asp-for="RegUser.Email" class="col-sm-8" placeholder="ex: email@email.com">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.Password" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="RegUser.Password" class="col-sm-4">Password:</label>
+                        <input type="password" asp-for="RegUser.Password" class="col-sm-8">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.ConfirmPassword" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="RegUser.ConfirmPassword" class="col-sm-4">Confirm Password:</label>
+                        <input type="password" asp-for="RegUser.ConfirmPassword" class="col-sm-8">
+                    </div>
+                    <input type="submit" value="Register" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+        <div class="card col-sm-6 text-left">
+            <h6>Log In</h6>
+            <div class="row">
+                <form asp-action="Login" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <span asp-validation-for="LogUser.LogEmail" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="LogUser.LogEmail" class="col-sm-4">Email:</label>
+                        <input type="email" asp-for="LogUser.LogEmail" class="col-sm-8" placeholder="ex: email.email.com">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="LogUser.LogPassword" class="text-danger col-sm-12"></span>
+                        <br>
+                        <label asp-for="LogUser.LogPassword" class="col-sm-4">Password:</label>
+                        <input type="password" asp-for="LogUser.LogPassword" class="col-sm-8">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Log In" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

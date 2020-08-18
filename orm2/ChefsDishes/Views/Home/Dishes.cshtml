@@ -1,0 +1,22 @@
+<partial name="NavPartial"/>
+<a href="newdish"><button>Add dish!</button></a>
+<h4>Yum, take a look at our tasty dishes!</h4>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Dish Name</th>
+      <th scope="col">Chef's Name</th>
+      <th scope="col">Testiness</th>
+      <th scope="col">Calaries</th>
+    </tr>
+  </thead>
+  @foreach (Dish d in @Model){
+    <tbody>
+      <tr>
+        <th>@d.Name</th>
+        <td>@d.Creator.Name</td>
+        <td>@d.Tastiness</td>
+        <td>@d.Calories</td>
+      </tr>
+    </tbody>}
+</table>

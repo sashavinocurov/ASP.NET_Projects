@@ -1,0 +1,16 @@
+@{
+    ViewData["Title"] = "Your Survey";
+}
+
+@using dojoSurvModel.Models
+@model Survey
+
+<div class="container">
+    <h3>Submitted Info</h3>
+    <p>Your Name: @Model.Name</p>
+    <p>Dojo Location: @Model.Location</p>
+    <p>Favorite Language: @Model.Language</p>
+    <p>Comment: @Model.Comment</p>
+
+    <a href="/"><button>Go Back</button></a>
+</div>

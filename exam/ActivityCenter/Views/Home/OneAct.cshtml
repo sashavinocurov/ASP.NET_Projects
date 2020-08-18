@@ -1,0 +1,42 @@
+@{
+    ViewData["Title"] = "Activity Desctiprtion";
+}
+
+@model OneActViewModel
+
+<div class="jumbotron">
+    <div class="container col-sm-6">
+        <h1>Dojo Activity Center</h1>
+    </div>
+    <div class="container col-sm-6 text-right">
+        <a href="/dashboard">Home&nbsp;&nbsp;</a> <a href="/logout">Logout</a>
+    </div>
+</div>
+<div class="container">
+    <div class="row m-1">
+        <h3>@Model.OneAct.Name</h3>
+        <button class="btn btn-outline-primary"><a href="/join/@Model.OneAct.ActId">Join</a></button>
+    </div>
+    <div class="row m-1">
+        <h5>Event Coordinator:&nbsp;&nbsp;@Model.OneAct.User.Name</h5>
+    </div>
+    <div class="row m-1">
+        <h5>Desctiprtion:</h5>
+    </div>
+    <div class="row m-1">
+        <p>@Model.OneAct.Description</p>
+    </div>
+
+    <div class="row m-1">
+        <h5>Praticipants: </h5>
+    </div>
+    <div class="row m-1">
+        <ul>
+            @foreach(Association per in Model.OneAct.UsersAttending)
+            {
+                <li>@per.User.Name</li>
+            }
+        </ul>
+    </div>
+</div>
+

@@ -1,0 +1,37 @@
+@model DisplayWeddingView
+<h2>Welcome @Model.user.FirstName to the Wedding Planner</h2>
+<a href="logout">Log Out!</a>
+<table class = "table table-striped">
+    <thead>
+        <tr>
+            <th>Wedding</th>
+            <th>Date</th>
+            <th>Guest</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+@foreach (Wedding w in Model.weddings)
+{
+    <thead>
+        <tr>
+            <td><a href="/displaywedding/@w.WeddingId">@w.WedderOne & @w.WedderTwo</a></td>
+            <td>@w.DateOfWedding.ToString("dd/MM/yyyy")</td>
+            <td>
+                @w.RSVPs.Count
+            </td>
+            <td>
+                @if(w.Creator == Model.user){
+                    <a href="/delete/@w.WeddingId">delete</a>
+                }
+                else if(w.RSVPs.Select(r=>r.Guest).Contains(Model.user)){
+                    <a href="/unreserve/@w.WeddingId">Un-RSVP</a>
+                }
+                else{
+                    <a href="/reserve/@w.WeddingId">RSVP</a>
+                }
+            </td>
+        </tr>
+    </thead>
+}
+</table>
+<a href="newwedding/@Model.user.UserId"><button>add New Wedding</button></a>

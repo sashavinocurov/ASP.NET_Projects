@@ -1,0 +1,12 @@
+@using dojoModels.Models
+@model int[]
+
+<div class="container">
+    <h3>Here are some Numbers!</h3>
+    <ul>
+        @foreach (int num in Model)
+        {
+            <li>@num</li>
+        }
+    </ul>
+</div>

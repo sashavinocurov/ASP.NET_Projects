@@ -1,0 +1,86 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model LogRegViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="row">
+                <h2>Register Page!</h2>
+            </div>
+            <div class="row">
+                <form asp-action="register" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.FirstName" class="text-danger col-sm-12"></span>
+                        <label asp-for="RegUser.FirstName" class="col-sm-4">Frist Name:</label>
+                        <input type="text" asp-for="RegUser.FirstName" class="col-sm-8" placeholder="First Name">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.LastName" class="text-danger col-sm-12"></span>
+                        <label asp-for="RegUser.LastName" class="col-sm-4">Last Name:</label>
+                        <input type="text" asp-for="RegUser.LastName" class="col-sm-8" placeholder="Last Name">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.City" class="text-danger col-sm-8"></span>
+                        <label asp-for="RegUser.City" class="col-sm-4">City: </label>
+                        <input type="text" asp-for="RegUser.City" class="col-sm-8" placeholder="City">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.State" class="text-danger col-sm-8"></span>
+                        <label asp-for="RegUser.State" class="col-sm-4">State: </label>
+                        <select asp-for="RegUser.State">
+                            <option value="WA" selected>WA</option>
+                            <option value="CA">CA</option>
+                            <option value="CO">CO</option>
+                            <option value="NY">NY</option>
+                            <option value="ID">ID</option>
+                            <option value="AR">AR</option>
+                            <option value="DC">DC</option>
+                            <option value="KS">KS</option>
+                            <option value="MA">MA</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.Email" class="text-danger col-sm-12"></span>
+                        <label asp-for="RegUser.Email" class="col-sm-4">Email:</label>
+                        <input type="email" asp-for="RegUser.Email" class="col-sm-8" placeholder="ex: email@email.com">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.Password" class="text-danger col-sm-12"></span>
+                        <label asp-for="RegUser.Password" class="col-sm-4">Password:</label>
+                        <input type="password" asp-for="RegUser.Password" class="col-sm-8">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="RegUser.ConfirmPassword" class="text-danger col-sm-12"></span>
+                        <label asp-for="RegUser.ConfirmPassword" class="col-sm-4">Confirm Password:</label>
+                        <input type="password" asp-for="RegUser.ConfirmPassword" class="col-sm-8">
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary">
+                </form>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="row">
+                <h2>Login Page!</h2>
+            </div>
+            <div class="row">
+                <form asp-action="login" asp-controller="Home" method="post">
+                    <div class="form-group">
+                        <span asp-validation-for="LogUser.LogEmail" class="text-danger col-sm-12"></span>
+                        <label asp-for="LogUser.LogEmail" class="col-sm-4">Email:</label>
+                        <input type="email" asp-for="LogUser.LogEmail" class="col-sm-8" placeholder="ex: email.email.com">
+                    </div>
+                    <div class="form-group">
+                        <span asp-validation-for="LogUser.LogPassword" class="text-danger col-sm-12"></span>
+                        <label asp-for="LogUser.LogPassword" class="col-sm-4">Password:</label>
+                        <input type="password" asp-for="LogUser.LogPassword" class="col-sm-8">
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Log In" class="btn btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

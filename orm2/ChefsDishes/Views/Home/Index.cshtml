@@ -1,0 +1,25 @@
+﻿@model List<Chef>
+<partial name="NavPartial"/>
+<a href="newchef"><button>Add Chef!</button></a>
+<h4>Check out our roster of Chefs!</h4>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col"># of Dishes</th>
+    </tr>
+  </thead>
+@foreach (Chef person in @Model){
+  <tbody>
+    <tr>
+      <th scope="row">@person.ChefId</th>
+      <td>@person.Name</td>
+      <td>@person.Age()</td>
+      <td>@person.CreatedDishes.Count()</td>
+    </tr>
+  </tbody>
+  }
+</table>

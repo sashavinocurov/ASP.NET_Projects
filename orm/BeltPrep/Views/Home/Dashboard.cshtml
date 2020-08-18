@@ -1,0 +1,128 @@
+@{
+    ViewData["Title"] = "Dashboard";
+}
+@model DashboardViewModel
+<div class="container">
+    <div class="row text-right">
+        <a href="#">Edit My Profile</a>&nbsp;&nbsp;
+        <a href="#">Logout</a>
+    </div>
+    <div class="row">
+        <h2>Welcome, @Model.LoggedUser.FirstName!</h2>
+    </div>
+    <div class="row">
+        <h6>Here are some of the evets at your state: </h6>
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Host</th>
+                <th>Action/Status</th>
+            </thead>
+            <tbody>
+                @foreach(Happening notevent in Model.EventsInState)
+                {
+                    <tr>
+                        <td><a href="#">@notevent.Name</a></td>
+                        <td>@notevent.Date</td>
+                        <td>@notevent.City</td>
+                        <td>@notevent.User.FirstName</td>
+                        <td>
+                            @if(!notevent.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId) && notevent.UserId != Model.LoggedUser.UserId)
+                            {
+                                <a href="/join/@notevent.HappeningId">Join</a>
+                            }
+                            else if(notevent.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId) && notevent.UserId != Model.LoggedUser.UserId)
+                            {
+                                <span>Joining&nbsp;&nbsp;</span><a href="/cancel/@notevent.HappeningId">Cancel</a>
+                            }
+                            else
+                            {
+                                <a href="/edit/@notevent.HappeningId">Edit</a><p>  </p><a href="/delete/@notevent.HappeningId">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <h6>Here are some of the evets on other states: </h6>
+        <table class="table">
+            <thead>
+                <th>Name</th>
+                <th>Date</th>
+                <th>Location</th>
+                <th>State</th>
+                <th>Host</th>
+                <th>Action/Status</th>
+            </thead>
+            <tbody>
+                @foreach(Happening notevent in Model.EventsOutOfState)
+                {
+                    <tr>
+                        <td><a href="#">@notevent.Name</a></td>
+                        <td>@notevent.Date</td>
+                        <td>@notevent.City</td>
+                        <td>@notevent.State</td>
+                        <td>@notevent.User.FirstName</td>
+                        <td>
+                            @if(!notevent.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId) && notevent.UserId != Model.LoggedUser.UserId)
+                            {
+                                <a href="/join/@notevent.HappeningId">Join</a>
+                            }
+                            else if(notevent.UsersAttending.Any(a => a.UserId == Model.LoggedUser.UserId) && notevent.UserId != Model.LoggedUser.UserId)
+                            {
+                                <span>Joining&nbsp;&nbsp;</span><a href="/cancel/@notevent.HappeningId">Cancel</a>
+                            }
+                            else
+                            {
+                                <a href="/edit/@notevent.HappeningId">Edit</a><p>  </p><a href="/delete/@notevent.HappeningId">Delete</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="row">
+        <form class="col-sm-6" asp-action="NewEvent" asp-controller="Home" method="post">
+            <div class="form-group row">
+                <span class="col-sm-12 text-danger" asp-validation-for="EventForm.Name"></span>
+                <label asp-for="EventForm.Name" class="col-sm-4">Name: </label>
+                <input type="text" asp-for="EventForm.Name" class="col-sm-8">
+            </div>
+            <div class="form-group row">
+                <span class="col-sm-12 text-danger" asp-validation-for="EventForm.Date"></span>
+                <label asp-for="EventForm.Date" class="col-sm-4">Date: </label>
+                <input type="date" asp-for="EventForm.Date" class="col-sm-8">
+            </div>
+            <div class="form-group row">
+                <div class="form-group col-sm-10">
+                    <span class="col-sm-12 text-danger" asp-validation-for="EventForm.City"></span>
+                    <label asp-for="EventForm.City" class="col-sm-4">Location: </label>
+                    <input type="text" asp-for="EventForm.City" class="col-sm-8">
+                </div>
+                <div class="form-group col-sm-2">
+                    <span asp-validation-for="EventForm.State" class="text-danger col-sm-4"></span>
+                    <select asp-for="EventForm.State">
+                        <option value="WA" selected>WA</option>
+                        <option value="CA">CA</option>
+                        <option value="CO">CO</option>
+                        <option value="NY">NY</option>
+                        <option value="ID">ID</option>
+                        <option value="AR">AR</option>
+                        <option value="DC">DC</option>
+                        <option value="KS">KS</option>
+                        <option value="MA">MA</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group row">
+                <input type="submit" value="Add Event" class="col-sm-4 btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+
